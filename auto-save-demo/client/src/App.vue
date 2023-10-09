@@ -1,17 +1,6 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <TextBar />
+  <router-view />
 </template>
-
-<script>
-import TextBar from "./components/TextBar.vue";
-export default {
-  name: "App",
-  components: {
-    TextBar,
-  },
-};
-</script>
 
 <style>
 #app {
