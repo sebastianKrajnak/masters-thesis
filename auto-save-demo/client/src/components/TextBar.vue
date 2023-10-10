@@ -1,55 +1,21 @@
-<!-- <template>
-  <div>
-    <h2>You are connected to {{ $route.params.id }}</h2>
-    <input v-model="text" @input="updateText" placeholder="Type something..." />
-    <p>{{ text }}</p>
-  </div>
-</template>
-
-<script>
-import socket from "@/socket";
-
-export default {
-  data() {
-    return {
-      text: "",
-      id: this.$route.params.id,
-    };
-  },
-  methods: {
-    updateText() {
-      // Emit a socket.io event to update text in real-time
-      socket.emit("send-changes", this.text);
-    },
-  },
-  mounted() {
-    // const id = useRoute().params.id;
-    socket.once("load-document", (data) => {
-      console.log("load document was called");
-      this.text = data;
-    });
-
-    socket.emit("get-document", this.id);
-    // Listen for changes to the shared text from other users
-    socket.on("receive-changes", (newText) => {
-      console.log("received changes");
-      this.text = newText;
-    });
-  },
-};
-</script> -->
-
 <template>
   <div>
     <h2>You are connected to {{ $route.params.id }}</h2>
-    <input v-model="text" @input="updateText" placeholder="Type something..." />
+    <input
+      v-model="text"
+      @input="updateText"
+      @keyup="handleKeyUp"
+      @keydown="handleKeyDown"
+      placeholder="Type something..."
+    />
     <p>{{ text }}</p>
+    <p v-if="displaySaving">Saving...</p>
   </div>
 </template>
 
 <script>
-import { ref, watchEffect, onMounted } from "vue";
-import socket from "@/socket"; // Import the Socket.io instance you created
+import { ref, onMounted, onUnmounted } from "vue";
+import socket from "@/socket";
 import { useRoute } from "vue-router";
 
 export default {
@@ -57,11 +23,34 @@ export default {
     const text = ref("");
     const route = useRoute();
     const id = route.params.id;
-    console.log(id);
+    let saveTimeout;
+    let keyDownFlag = false;
+    const displaySaving = ref(false);
 
     const updateText = () => {
-      // Emit a socket.io event to update text in real-time
       socket.emit("send-changes", text.value);
+    };
+
+    const handleKeyUp = () => {
+      keyDownFlag = false;
+      clearTimeout(saveTimeout);
+      saveTimeout = setTimeout(() => {
+        saveDocument();
+      }, 1500);
+    };
+
+    const saveDocument = () => {
+      if (!keyDownFlag) {
+        displaySaving.value = true;
+        setTimeout(() => {
+          socket.emit("save-document", text.value);
+          displaySaving.value = false;
+        }, 1500);
+      }
+    };
+
+    const handleKeyDown = () => {
+      keyDownFlag = true;
     };
 
     const receiveChanges = (newText) => {
@@ -78,14 +67,8 @@ export default {
       socket.emit("get-document", id);
     });
 
-    watchEffect(() => {
-      const interval = setInterval(() => {
-        socket.emit("save-document", text.value);
-      }, 2000);
-
-      return () => {
-        clearInterval(interval);
-      };
+    onUnmounted(() => {
+      clearInterval(saveTimeout);
     });
 
     // Listen for changes to the shared text from other users
@@ -93,7 +76,10 @@ export default {
 
     return {
       text,
+      displaySaving,
       updateText,
+      handleKeyDown,
+      handleKeyUp,
     };
   },
 };
