@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  frontend:
+    build: 
+      context: .
+      dockerfile: Dockerfile-frontend
+    tty: true
+    container_name: Ubuntu-Vue3-Q-sort-frontend
+    user: root
+    ports: 
+      - "8080:8080"
+    volumes:
+      - type: bind
+        source: ../q-sort-app
+        target: /frontend-q-sort

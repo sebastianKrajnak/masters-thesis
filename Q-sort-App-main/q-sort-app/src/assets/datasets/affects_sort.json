@@ -1,0 +1,72 @@
+{
+    "name": "Affect adjectives scale",
+    "uid": "1",
+    "question": "Describe your emotional experience in the past week, think of how you felt throughout the week in general.",
+    "delimiters": [
+        "Extremely",
+        "Moderately",
+        "Not at all"
+    ],
+    "colors": [
+        "#8CB37F",
+        "#ECEBE5",
+        "#F79696"
+    ],
+    "table": [
+        1,
+        3,
+        4,
+        3,
+        1
+    ],
+    "cards": [
+        {
+            "id": 0,
+            "text": "Happy"
+        },
+        {
+            "id": 1,
+            "text": "Worried"
+        },
+        {
+            "id": 2,
+            "text": "Pleased"
+        },
+        {
+            "id": 3,
+            "text": "Angry/Hostile"
+        },
+        {
+            "id": 4,
+            "text": "Frustrated"
+        },
+        {
+            "id": 5,
+            "text": "Depressed/Blue"
+        },
+        {
+            "id": 6,
+            "text": "Relaxed/Calm"
+        },
+        {
+            "id": 7,
+            "text": "Unhappy"
+        },
+        {
+            "id": 8,
+            "text": "Enjoyment/Fun"
+        },
+        {
+            "id": 9,
+            "text": "Peaceful/Serene"
+        },
+        {
+            "id": 10,
+            "text": "Dull/Bored"
+        },
+        {
+            "id": 11,
+            "text": "Joyful"
+        }
+    ]
+}

@@ -1,0 +1,470 @@
+{
+    "name": "Perception of students' lives",
+    "uid": "3",
+    "question": "How do you perceive your academic and social live in college/university?",
+    "delimiters": [
+        "Agree strongly",
+        "Neutral",
+        "Disagree Strongly"
+    ],
+    "colors": [
+        "#8CB37F",
+        "#ECEBE5",
+        "#F79696"
+    ],
+    "table": [
+        2,
+        6,
+        9,
+        13,
+        16,
+        18,
+        16,
+        13,
+        9,
+        6,
+        2
+    ],
+    "cards": [
+        {
+            "id": 0,
+            "text": "I am satisfied with my academic progress."
+        },
+        {
+            "id": 1,
+            "text": "I feel like I am learning and growing as a person in college."
+        },
+        {
+            "id": 2,
+            "text": "I often feel stressed or overwhelmed by schoolwork."
+        },
+        {
+            "id": 3,
+            "text": "I have close friendships with other students."
+        },
+        {
+            "id": 4,
+            "text": "I feel like I fit in well with my peers."
+        },
+        {
+            "id": 5,
+            "text": "I am involved in extracurricular activities on campus."
+        },
+        {
+            "id": 6,
+            "text": "I am satisfied with my social life at college."
+        },
+        {
+            "id": 7,
+            "text": "I often feel homesick or lonely."
+        },
+        {
+            "id": 8,
+            "text": "I feel like I am part of a community on campus."
+        },
+        {
+            "id": 9,
+            "text": "I have a clear sense of my academic and career goals."
+        },
+        {
+            "id": 10,
+            "text": "I feel like I am making a meaningful contribution to the world through my studies."
+        },
+        {
+            "id": 11,
+            "text": "I often feel like I am just going through the motions in college."
+        },
+        {
+            "id": 12,
+            "text": "I feel like I am challenged and pushed to grow intellectually in college."
+        },
+        {
+            "id": 13,
+            "text": "I am comfortable speaking up in class and participating in discussions."
+        },
+        {
+            "id": 14,
+            "text": "I feel like I am getting a good value for my tuition dollars."
+        },
+        {
+            "id": 15,
+            "text": "I have a positive relationship with my academic advisor."
+        },
+        {
+            "id": 16,
+            "text": "I feel like I have a good work-life balance."
+        },
+        {
+            "id": 17,
+            "text": "I feel like my professors are invested in my success."
+        },
+        {
+            "id": 18,
+            "text": "I am able to manage my time effectively."
+        },
+        {
+            "id": 19,
+            "text": "I am satisfied with the quality of the courses and curriculum."
+        },
+        {
+            "id": 20,
+            "text": "I feel like I have access to the resources and support I need to succeed."
+        },
+        {
+            "id": 21,
+            "text": "I have a strong sense of belonging on campus."
+        },
+        {
+            "id": 22,
+            "text": "I feel like I am challenged to think critically and creatively in my classes."
+        },
+        {
+            "id": 23,
+            "text": "I have a good relationship with my roommates."
+        },
+        {
+            "id": 24,
+            "text": "I feel like I have a sense of purpose and direction in college."
+        },
+        {
+            "id": 25,
+            "text": "I am comfortable with the level of diversity on campus."
+        },
+        {
+            "id": 26,
+            "text": "I feel like I am gaining skills and knowledge that will be useful in my future career."
+        },
+        {
+            "id": 27,
+            "text": "I am able to manage my finances effectively while in college."
+        },
+        {
+            "id": 28,
+            "text": "I feel like I am supported in pursuing my passions and interests."
+        },
+        {
+            "id": 29,
+            "text": "I have opportunities to engage in community service and volunteer work."
+        },
+        {
+            "id": 30,
+            "text": "I feel like I am able to express my opinions and beliefs freely on campus."
+        },
+        {
+            "id": 31,
+            "text": "I feel like I am receiving a well-rounded education."
+        },
+        {
+            "id": 32,
+            "text": "I am able to balance my academic and social commitments effectively."
+        },
+        {
+            "id": 33,
+            "text": "I feel like I am able to contribute to the campus community in a meaningful way."
+        },
+        {
+            "id": 34,
+            "text": "I am comfortable with the campus culture and values."
+        },
+        {
+            "id": 35,
+            "text": "I feel like I am able to maintain a healthy lifestyle while in college."
+        },
+        {
+            "id": 36,
+            "text": "I feel like I am able to navigate the campus bureaucracy effectively."
+        },
+        {
+            "id": 37,
+            "text": "I am able to form meaningful relationships with faculty members."
+        },
+        {
+            "id": 38,
+            "text": "I feel like I am prepared for the challenges of the real world after graduation."
+        },
+        {
+            "id": 39,
+            "text": "I feel like I am able to explore different areas of interest and try new things in college."
+        },
+        {
+            "id": 40,
+            "text": "I feel like my mental health is supported and prioritized on campus."
+        },
+        {
+            "id": 41,
+            "text": "I feel like I am able to make a positive impact on the world through my actions on campus."
+        },
+        {
+            "id": 42,
+            "text": "I feel like I am able to effectively communicate with my peers and professors."
+        },
+        {
+            "id": 43,
+            "text": "I feel like I am receiving a high-quality education that is worth the cost."
+        },
+        {
+            "id": 44,
+            "text": "I am able to balance my academic workload with other responsibilities, such as work or family obligations."
+        },
+        {
+            "id": 45,
+            "text": "I feel like I am able to effectively manage stress and cope with challenges in college."
+        },
+        {
+            "id": 46,
+            "text": "I feel like I am able to maintain a healthy work-life balance while in college."
+        },
+        {
+            "id": 47,
+            "text": "I feel like I am able to effectively collaborate with others on group projects."
+        },
+        {
+            "id": 48,
+            "text": "I have access to a variety of extracurricular activities that align with my interests."
+        },
+        {
+            "id": 49,
+            "text": "I feel like I am able to effectively communicate with individuals from diverse backgrounds."
+        },
+        {
+            "id": 50,
+            "text": "I feel like I am able to form meaningful connections with individuals from diverse backgrounds."
+        },
+        {
+            "id": 51,
+            "text": "I feel like I am able to effectively advocate for myself and my needs on campus."
+        },
+        {
+            "id": 52,
+            "text": "I feel like my opinions and perspectives are valued and respected on campus."
+        },
+        {
+            "id": 53,
+            "text": "I feel like I am able to effectively manage my academic workload."
+        },
+        {
+            "id": 54,
+            "text": "I feel like I am able to effectively manage my personal responsibilities and obligations."
+        },
+        {
+            "id": 55,
+            "text": "I feel like I am able to effectively balance my academic and extracurricular commitments."
+        },
+        {
+            "id": 56,
+            "text": "I feel like I am able to make meaningful contributions to my field of study."
+        },
+        {
+            "id": 57,
+            "text": "I feel like I am able to effectively apply what I am learning in my classes."
+        },
+        {
+            "id": 58,
+            "text": "I feel like I am able to effectively connect with alumni and other professionals in my field."
+        },
+        {
+            "id": 59,
+            "text": "I feel like I am able to effectively prepare for my future career."
+        },
+        {
+            "id": 60,
+            "text": "I feel like I am able to effectively network with individuals in my field."
+        },
+        {
+            "id": 61,
+            "text": "I feel like I am able to effectively seek out and apply for internships and other career opportunities."
+        },
+        {
+            "id": 62,
+            "text": "I feel like I am able to effectively advocate for change on campus."
+        },
+        {
+            "id": 63,
+            "text": "I feel like I am able to effectively engage in debates and discussions on campus."
+        },
+        {
+            "id": 64,
+            "text": "I feel like I am able to effectively engage in political activism on campus."
+        },
+        {
+            "id": 65,
+            "text": "I feel like I am able to effectively engage in social justice activism on campus."
+        },
+        {
+            "id": 66,
+            "text": "I feel like I am able to effectively engage in environmental activism on campus."
+        },
+        {
+            "id": 67,
+            "text": "I feel like I am able to effectively engage in community service on campus."
+        },
+        {
+            "id": 68,
+            "text": "I feel like I am able to effectively engage in philanthropic activities on campus."
+        },
+        {
+            "id": 69,
+            "text": "I feel like I am able to effectively engage in cultural and diversity-related activities on campus."
+        },
+        {
+            "id": 70,
+            "text": "I feel like I am able to effectively engage in recreational activities on campus."
+        },
+        {
+            "id": 71,
+            "text": "I feel like I am able to effectively balance my social and academic commitments."
+        },
+        {
+            "id": 72,
+            "text": "I feel like I am able to effectively manage my personal health and well-being while in college."
+        },
+        {
+            "id": 73,
+            "text": "I feel like I am able to effectively maintain a healthy and fulfilling romantic relationship while in college."
+        },
+        {
+            "id": 74,
+            "text": "I feel like I am able to effectively form meaningful friendships on campus."
+        },
+        {
+            "id": 75,
+            "text": "I feel like I am able to effectively maintain long-distance friendships while in college."
+        },
+        {
+            "id": 76,
+            "text": "I feel like I am able to effectively navigate romantic and sexual relationships while in college."
+        },
+        {
+            "id": 77,
+            "text": "I feel like I am able to effectively manage my time and priorities."
+        },
+        {
+            "id": 78,
+            "text": "I feel like I am able to effectively communicate with my parents and family members about my college experience."
+        },
+        {
+            "id": 79,
+            "text": "I feel like I am able to effectively cope with homesickness and separation anxiety while in college."
+        },
+        {
+            "id": 80,
+            "text": "I feel like I am able to effectively seek out mental health resources and support on campus."
+        },
+        {
+            "id": 81,
+            "text": "I feel like I am able to effectively engage in physical fitness and wellness activities on campus."
+        },
+        {
+            "id": 82,
+            "text": "I feel like I am able to effectively engage in spiritual or religious activities on campus."
+        },
+        {
+            "id": 83,
+            "text": "I feel like I am able to effectively balance my academic and social lives while in college."
+        },
+        {
+            "id": 84,
+            "text": "I feel like I am able to effectively manage my finances and budget while in college."
+        },
+        {
+            "id": 85,
+            "text": "I feel like I am able to effectively balance my involvement in different clubs and organizations on campus."
+        },
+        {
+            "id": 86,
+            "text": "I feel like I am able to effectively balance my involvement in academic and non-academic pursuits."
+        },
+        {
+            "id": 87,
+            "text": "I feel like I am able to effectively manage my stress and anxiety while in college."
+        },
+        {
+            "id": 88,
+            "text": "I feel like I am able to effectively cope with academic setbacks, such as poor grades or failed exams."
+        },
+        {
+            "id": 89,
+            "text": "I feel like I am able to effectively seek out academic support and resources, such as tutoring or academic coaching."
+        },
+        {
+            "id": 90,
+            "text": "I feel like I am able to effectively prioritize my academic and personal goals."
+        },
+        {
+            "id": 91,
+            "text": "I feel like I am able to effectively seek out mentorship and guidance from professors and advisors."
+        },
+        {
+            "id": 92,
+            "text": "I feel like I am able to effectively engage in research or independent study opportunities."
+        },
+        {
+            "id": 93,
+            "text": "I feel like I am able to effectively navigate the college application and admissions process."
+        },
+        {
+            "id": 94,
+            "text": "I feel like I am able to effectively transition from high school to college."
+        },
+        {
+            "id": 95,
+            "text": "I feel like I am able to effectively navigate cultural differences and diversity on campus."
+        },
+        {
+            "id": 96,
+            "text": "I feel like I am able to effectively engage in study abroad or international exchange programs."
+        },
+        {
+            "id": 97,
+            "text": "I feel like I am able to effectively balance my academic and personal responsibilities while studying abroad."
+        },
+        {
+            "id": 98,
+            "text": "I feel like I am able to effectively engage in service-learning or community engagement opportunities."
+        },
+        {
+            "id": 99,
+            "text": "I feel like I am able to effectively engage in interdisciplinary or cross-disciplinary studies."
+        },
+        {
+            "id": 100,
+            "text": "I feel like I am able to effectively engage in academic research, writing, and presenting."
+        },
+        {
+            "id": 101,
+            "text": "I feel like I am able to effectively engage in peer mentoring and tutoring for other students."
+        },
+        {
+            "id": 102,
+            "text": "I feel like I am able to effectively engage in leadership and organizational roles on campus."
+        },
+        {
+            "id": 103,
+            "text": "I feel like I am able to effectively balance my academic and personal identities and values."
+        },
+        {
+            "id": 104,
+            "text": "I feel like I am able to effectively engage in self-reflection and personal growth while in college."
+        },
+        {
+            "id": 105,
+            "text": "I feel like I am able to effectively engage in dialogue and communication with individuals who have different viewpoints and perspectives."
+        },
+        {
+            "id": 106,
+            "text": "I feel like I am able to effectively seek out and utilize resources for career development and job searching."
+        },
+        {
+            "id": 107,
+            "text": "I feel like I am able to effectively balance my professional and personal aspirations and goals."
+        },
+        {
+            "id": 108,
+            "text": "I feel like I am able to effectively engage in entrepreneurship or business development opportunities."
+        },
+        {
+            "id": 109,
+            "text": "I feel like I am able to effectively navigate the post-graduation job search and application process."
+        }
+    ]
+}
