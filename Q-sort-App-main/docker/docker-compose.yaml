@@ -2,15 +2,26 @@ version: "3"
 
 services:
   frontend:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile-frontend
     tty: true
     container_name: Ubuntu-Vue3-Q-sort-frontend
     user: root
-    ports: 
+    ports:
       - "8080:8080"
     volumes:
       - type: bind
         source: ../q-sort-app
         target: /frontend-q-sort
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile-backend
+    container_name: WebSocket-server-backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - type: bind
+        source: ../server
+        target: /backend-server
