@@ -122,6 +122,9 @@ function socketCardMoved(cardData) {
     console.log(
       `Received changes row: ${cardData.row} ,col: ${cardData.col} ,selected card: ${qStore.selectedCardId} ,data id: ${cardData.id}`
     );
+    qStore.setSelected(cardData.id);
+    qStore.setSelectedIdx(cardData.id);
+
     qStore.moveToSlot(cardData.row, cardData.col);
   }
 }
