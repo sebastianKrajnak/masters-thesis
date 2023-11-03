@@ -47,9 +47,13 @@ io.on("connection", (socket) => {
     });
   }); */
 
-  socket.on("move-card", ({ row, col }) => {
-    console.log("card moved");
-    socket.broadcast.emit("card-moved", { row, col });
+  socket.on("move-card", ({ id, row, col }) => {
+    socket.broadcast.emit("card-moved", { id, row, col });
+  });
+
+  socket.on("remove-card", ({ id, row, col }) => {
+    console.log("card removed");
+    socket.broadcast.emit("card-removed", { id, row, col });
   });
 
   socket.on("disconnect", () => {

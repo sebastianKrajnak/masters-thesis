@@ -17,7 +17,7 @@
       >
         <NormalButton
           class="return-card"
-          @click="qStore.returnCardToQueue()"
+          @click="onClickRemoveCard()"
           :btnType="ButtonTypes.NormalNoOpacity"
         >
           <div class="return-card-text">Return</div>
@@ -51,32 +51,6 @@ const card = ref({
   text: "",
 });
 
-const moveCard = () => {
-  console.log("called watcher func");
-  var cardId = qStore.getTableCardId(props.row, props.col);
-  if (cardId != null) {
-    if (cVisible.value && card.value.id != cardId) {
-      console.log("card in place");
-      cVisible.value = false;
-      setTimeout(() => {
-        card.value.id = cardId;
-        card.value.text = qStore.getCardText(cardId);
-        cVisible.value = true;
-      }, 175);
-    } else {
-      console.log("empty slot");
-      card.value.id = cardId;
-      card.value.text = qStore.getCardText(cardId);
-      cVisible.value = true;
-    }
-  } else {
-    console.log("removing card");
-    cVisible.value = false;
-    card.id = null;
-    card.text = "";
-  }
-};
-
 watch(
   () => qStore.table[props.row][props.col],
   () => {
@@ -107,13 +81,22 @@ watch(
 );
 
 socket.on("card-moved", socketCardMoved);
+socket.on("card-removed", socketRecRemove);
 
 /**
  * Moves selected card to this slot
  */
 function onClickMove() {
-  socketMoveCard(props.row, props.col);
+  socketMoveCard(qStore.selectedCardId, props.row, props.col);
   qStore.moveToSlot(props.row, props.col);
+}
+
+/**
+ * Removes selected card from slot
+ */
+function onClickRemoveCard() {
+  socketSendRemove(qStore.selectedCardId, props.row, props.col);
+  qStore.returnCardToQueue();
 }
 
 /**
@@ -127,14 +110,35 @@ function classMovable() {
   }
 }
 
-function socketMoveCard(row, col) {
-  console.log("emitting...");
-  socket.emit("move-card", { row, col });
+/**
+ * Socket communication functions
+ */
+function socketMoveCard(id, row, col) {
+  socket.emit("move-card", { id, row, col });
 }
 
-function socketCardMoved(position) {
-  console.log(`Received changes row: ${position.row} and col ${position.col}`);
-  qStore.moveToSlot(position.row, position.col);
+function socketCardMoved(cardData) {
+  if (props.row === cardData.row && props.col === cardData.col) {
+    console.log(
+      `Received changes row: ${cardData.row} ,col: ${cardData.col} ,selected card: ${qStore.selectedCardId} ,data id: ${cardData.id}`
+    );
+    qStore.moveToSlot(cardData.row, cardData.col);
+  }
+}
+
+function socketSendRemove(id, row, col) {
+  socket.emit("remove-card", { id, row, col });
+}
+
+function socketRecRemove(cardData) {
+  if (qStore.getTableCardId(cardData.row, cardData.col) === cardData.id) {
+    console.log("removing card fn called");
+    console.log(
+      `Received remove row: ${cardData.row} ,col: ${cardData.col} ,selected card: ${qStore.selectedCardId} ,data id: ${cardData.id}`
+    );
+    qStore.setSelected(cardData.id, cardData.row, cardData.col);
+    qStore.returnCardToQueue();
+  }
 }
 
 onMounted(() => {
