@@ -17,7 +17,7 @@
       >
         <NormalButton
           class="return-card"
-          @click="onClickRemoveCard()"
+          @click="onClickRemove()"
           :btnType="ButtonTypes.NormalNoOpacity"
         >
           <div class="return-card-text">Return</div>
@@ -54,25 +54,21 @@ const card = ref({
 watch(
   () => qStore.table[props.row][props.col],
   () => {
-    console.log("called watcher func");
     var cardId = qStore.getTableCardId(props.row, props.col);
     if (cardId != null) {
-      if (cVisible.value && card.value.id != cardId) {
-        console.log("card in place");
+      if (cVisible.value && card.value.id != cardId) { //swap cards
         cVisible.value = false;
         setTimeout(() => {
           card.value.id = cardId;
           card.value.text = qStore.getCardText(cardId);
           cVisible.value = true;
         }, 175);
-      } else {
-        console.log("empty slot");
+      } else { //insert card
         card.value.id = cardId;
         card.value.text = qStore.getCardText(cardId);
         cVisible.value = true;
       }
-    } else {
-      console.log("removing card");
+    } else { //remove card
       cVisible.value = false;
       card.id = null;
       card.text = "";
@@ -80,21 +76,21 @@ watch(
   }
 );
 
-socket.on("card-moved", socketCardMoved);
+socket.on("card-moved", socketRecMove);
 socket.on("card-removed", socketRecRemove);
 
 /**
  * Moves selected card to this slot
  */
 function onClickMove() {
-  socketMoveCard(qStore.selectedCardId, props.row, props.col);
+  socketSendMove(qStore.selectedCardId, props.row, props.col);
   qStore.moveToSlot(props.row, props.col);
 }
 
 /**
  * Removes selected card from slot
  */
-function onClickRemoveCard() {
+function onClickRemove() {
   socketSendRemove(qStore.selectedCardId, props.row, props.col);
   qStore.returnCardToQueue();
 }
@@ -113,11 +109,11 @@ function classMovable() {
 /**
  * Socket communication functions
  */
-function socketMoveCard(id, row, col) {
+function socketSendMove(id, row, col) {
   socket.emit("move-card", { id, row, col });
 }
 
-function socketCardMoved(cardData) {
+function socketRecMove(cardData) {
   if (props.row === cardData.row && props.col === cardData.col) {
     console.log(
       `Received changes row: ${cardData.row} ,col: ${cardData.col} ,selected card: ${qStore.selectedCardId} ,data id: ${cardData.id}`
@@ -143,6 +139,8 @@ function socketRecRemove(cardData) {
     qStore.returnCardToQueue();
   }
 }
+
+
 
 onMounted(() => {
   var cardId = qStore.getTableCardId(props.row, props.col);

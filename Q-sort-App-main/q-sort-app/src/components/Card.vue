@@ -20,6 +20,7 @@
 <script setup>
     import { useQSortStore } from '../stores/q-sort'
     import { useGlobalStore } from '../stores/global';
+    import socket from "../socket"
     const props = defineProps({
         text: String,
         id: Number,
@@ -84,10 +85,39 @@
             }else if(!qStore.isSelectedInQueue() && !props.inQueue){
                 if(qStore.selectedCardId == props.id){
                     qStore.setSelected()
-                }else{
-                    qStore.swapSlots(props.id)
-                }
+                }else {
+                swapCards();
+
             }
+            }
+        }
+    }
+
+    socket.on("card-swapped", socketRecSwap);
+
+    function swapCards() {
+        var cardPos = qStore.getCardPos(qStore.selectedCardId)
+        socketSendSwap(props.id, qStore.selectedCardId, cardPos.row, cardPos.col );
+        qStore.swapSlots(props.id);
+    }
+    /**
+     * Send socket event to swap cards
+     * @param {Number} destID ID of a card to swap places with selected card (props.id)
+     * @param {Number} sourceID ID of a card selected for swap
+     * @param {Number} sourceRow Row on the table of a card selected for swap
+     * @param {Number} sourceCol Column on the table of a card selected for swap
+     */
+    function socketSendSwap(destID, sourceID, sourceRow, sourceCol) {
+        socket.emit("swap-card", {destID, sourceID, sourceRow, sourceCol});
+    }
+    /**
+     * Handle swap after receiving event from socket server
+     * @param {Object} data contains information received from socket server of both cards for swap
+     */
+    function socketRecSwap(data) {
+        if (props.id === data.sourceID) {
+            qStore.setSelected(data.sourceID, data.sourceRow, data.sourceCol);
+            qStore.swapSlots(data.destID);
         }
     }
 </script>
