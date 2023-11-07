@@ -54,25 +54,21 @@ const card = ref({
 watch(
   () => qStore.table[props.row][props.col],
   () => {
-    console.log("called watcher func");
     var cardId = qStore.getTableCardId(props.row, props.col);
     if (cardId != null) {
-      if (cVisible.value && card.value.id != cardId) {
-        console.log("card in place");
+      if (cVisible.value && card.value.id != cardId) { //swap cards
         cVisible.value = false;
         setTimeout(() => {
           card.value.id = cardId;
           card.value.text = qStore.getCardText(cardId);
           cVisible.value = true;
         }, 175);
-      } else {
-        console.log("empty slot");
+      } else { //insert card
         card.value.id = cardId;
         card.value.text = qStore.getCardText(cardId);
         cVisible.value = true;
       }
-    } else {
-      console.log("removing card");
+    } else { //remove card
       cVisible.value = false;
       card.id = null;
       card.text = "";
