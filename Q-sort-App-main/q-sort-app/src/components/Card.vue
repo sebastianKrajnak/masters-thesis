@@ -20,6 +20,7 @@
 <script setup>
     import { useQSortStore } from '../stores/q-sort'
     import { useGlobalStore } from '../stores/global';
+    import socket from "../socket"
     const props = defineProps({
         text: String,
         id: Number,
@@ -84,11 +85,32 @@
             }else if(!qStore.isSelectedInQueue() && !props.inQueue){
                 if(qStore.selectedCardId == props.id){
                     qStore.setSelected()
-                }else{
-                    qStore.swapSlots(props.id)
-                }
+                }else {
+                swapCards();
+
+            }
             }
         }
+    }
+
+    socket.on("card-swapped", socketRecSwap);
+
+    function swapCards() {
+        var cardPos = qStore.getCardPos(qStore.selectedCardId)
+        socketSendSwap(props.id, qStore.selectedCardId, cardPos.row, cardPos.col );
+        qStore.swapSlots(props.id);
+    }
+
+    function socketSendSwap(destID, sourceID, sourceRow, sourceCol) {
+    socket.emit("swap-card", {destID, sourceID, sourceRow, sourceCol});
+    }
+
+    function socketRecSwap(data) {
+    if (props.id === data.sourceID) {
+        console.log(`card: ${props.id} received swap to swap selected card ${data.sourceID} with ${data.destID}`);
+        qStore.setSelected(data.sourceID, data.sourceRow, data.sourceCol);
+        qStore.swapSlots(data.destID);
+    }
     }
 </script>
 

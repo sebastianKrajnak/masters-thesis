@@ -56,6 +56,11 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("card-removed", { id, row, col });
   });
 
+  socket.on("swap-card", ({destID, sourceID, sourceRow, sourceCol}) => {
+    console.log("card swapped");
+    socket.broadcast.emit("card-swapped", {destID, sourceID, sourceRow, sourceCol});
+  });
+
   socket.on("disconnect", () => {
     console.log("User disconnected");
   });
