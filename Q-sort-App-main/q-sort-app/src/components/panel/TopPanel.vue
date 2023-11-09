@@ -197,18 +197,21 @@ function showButton() {
   showBtnVisible.value = !showBtnVisible.value;
 }
 
-watch(qStore.queue, () => {
-  if (qStore.queue.length <= 0) {
-    console.log(`Ayo watcher queue len is ${qStore.queue.length}`);
+watch(
+  () => qStore.queue.length,
+  () => {
+    if (qStore.queue.length <= 0) {
+      console.log(`Ayo watcher queue len is ${qStore.queue.length}`);
 
-    gStore.waitForTransitions().then(() => {
-      sStore.queueVisible = false;
-    });
-  } else {
-    console.log(`Queue len: ${qStore.queue.length}`);
-    submitVisible.value = false;
+      gStore.waitForTransitions().then(() => {
+        sStore.queueVisible = false;
+      });
+    } else {
+      console.log(`Queue len: ${qStore.queue.length}`);
+      submitVisible.value = false;
+    }
   }
-});
+);
 
 onBeforeMount(() => {
   if (qStore.queue.length <= 0) {
