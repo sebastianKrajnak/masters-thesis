@@ -115,9 +115,6 @@ function socketSendMove(id, row, col) {
 
 function socketRecMove(cardData) {
   if (props.row === cardData.row && props.col === cardData.col) {
-    console.log(
-      `Received changes row: ${cardData.row} ,col: ${cardData.col} ,selected card: ${qStore.selectedCardId} ,data id: ${cardData.id}`
-    );
     qStore.setSelected(cardData.id);
     qStore.setSelectedIdx(cardData.id);
 
@@ -131,10 +128,6 @@ function socketSendRemove(id, row, col) {
 
 function socketRecRemove(cardData) {
   if (qStore.getTableCardId(cardData.row, cardData.col) === cardData.id) {
-    console.log("removing card fn called");
-    console.log(
-      `Received remove row: ${cardData.row} ,col: ${cardData.col} ,selected card: ${qStore.selectedCardId} ,data id: ${cardData.id}`
-    );
     qStore.setSelected(cardData.id, cardData.row, cardData.col);
     qStore.returnCardToQueue();
   }

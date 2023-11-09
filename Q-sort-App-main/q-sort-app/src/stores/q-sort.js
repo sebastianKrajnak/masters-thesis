@@ -88,7 +88,6 @@ export const useQSortStore = defineStore("q-sort", () => {
     //Selected card generated based on queue
     if (table.value.length > 0) {
       selectedCardId.value = queue.value[selectedIdx.value];
-      console.log(`Table len: ${table.value.length}, queue len: ${queue.value.length}`);
     } else {
       unselect();
     }
