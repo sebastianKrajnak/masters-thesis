@@ -88,18 +88,22 @@ export const useQSortStore = defineStore("q-sort", () => {
     //Selected card generated based on queue
     if (table.value.length > 0) {
       selectedCardId.value = queue.value[selectedIdx.value];
+      console.log(`Table len: ${table.value.length}, queue len: ${queue.value.length}`);
     } else {
       unselect();
     }
   }
   function loadTableQueueFromServer(tableData, queueData) {
     if (queueData === "" && tableData === "") {
-      queue.value = loadCardIds();
+      return;
     } else {
+      queue.value = [];
       var cQueue = queueData.split(",");
-      queue.value = cQueue.map(Number);
+      //otherwise it puts first card into queue even though it's on the table
+      queue.value = cQueue == "" ? [] : cQueue.map(Number);
       var cTable = tableData.split(",");
       table.value = loadTable(cTable);
+      setSelected();
     }
   }
   function saveTableQueueToServer() {
