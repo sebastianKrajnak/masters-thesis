@@ -1,27 +1,41 @@
 version: "3"
 
 services:
-  frontend:
+  # frontend:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile-frontend
+  #   tty: true
+  #   container_name: Ubuntu-Vue3-Q-sort-frontend
+  #   user: root
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #     - type: bind
+  #       source: ../q-sort-app
+  #       target: /frontend-q-sort
+  nginx:
     build:
       context: .
-      dockerfile: Dockerfile-frontend
-    tty: true
-    container_name: Ubuntu-Vue3-Q-sort-frontend
-    user: root
+      dockerfile: dockerfile-nginx
+    container_name: nginx-server
+    volumes: -./nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - "8080:8080"
-    volumes:
-      - type: bind
-        source: ../q-sort-app
-        target: /frontend-q-sort
-  backend:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - ws-server
+      - q-app
+  ws-server:
     build:
       context: .
-      dockerfile: Dockerfile-backend
-    container_name: WebSocket-server-backend
+      dockerfile: dockerfile-backend
+    container_name: ws-server
     ports:
       - "3000:3000"
-    volumes:
-      - type: bind
-        source: ../server
-        target: /backend-server
+  q-app:
+    build:
+      context: .
+      dockerfile: dockerfile-xkrajn05
+    expose:
+      - "8080"
