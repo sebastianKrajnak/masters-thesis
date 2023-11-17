@@ -16,7 +16,7 @@ services:
   #       target: /frontend-q-sort
   nginx:
     build:
-      context: .
+      context: ./docker
       dockerfile: dockerfile-nginx
     container_name: nginx-server
     volumes:
@@ -29,14 +29,14 @@ services:
       - q-app
   ws-server:
     build:
-      context: .
-      dockerfile: dockerfile-backend
+      context: ./docker
+      dockerfile: ./server/dockerfile-backend
     container_name: ws-server
     ports:
       - "3000:3000"
   q-app:
     build:
-      context: .
-      dockerfile: dockerfile-xkrajn05
+      context: ./docker
+      dockerfile: ./q-sort-app/dockerfile-xkrajn05
     expose:
       - "8080"
