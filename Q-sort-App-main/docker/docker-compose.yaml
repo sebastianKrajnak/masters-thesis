@@ -15,28 +15,37 @@ services:
   #       source: ../q-sort-app
   #       target: /frontend-q-sort
   nginx:
-    build:
-      context: ./docker
-      dockerfile: dockerfile-nginx
     container_name: nginx-server
+    build:
+      context: ../nginx
+      dockerfile: ../nginx/dockerfile-nginx
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ../nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - "80:80"
       - "443:443"
     depends_on:
       - ws-server
-      - q-app
+      - xkrajn05
   ws-server:
-    build:
-      context: ./docker
-      dockerfile: ./server/dockerfile-backend
     container_name: ws-server
+    build:
+      context: ../server
+      dockerfile: ../server/dockerfile-backend
     ports:
       - "3000:3000"
-  q-app:
+    depends_on:
+      - mongo
+  xkrajn05:
+    container_name: xkrajn05
     build:
-      context: ./docker
-      dockerfile: ./q-sort-app/dockerfile-xkrajn05
+      context: ../q-sort-app
+      dockerfile: ../q-sort-app/Dockerfile
     expose:
       - "8080"
+  mongo:
+    container_name: mongo-db
+    image: mongo:latest
+    restart: always
+    ports:
+      - "27017:27017"

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const TableQueue = require("./TableQueue");
 
-mongoose.connect("mongodb://localhost:27017/test-db");
+mongoose.connect("mongodb://mongo-db:27017/test-db");
 mongoose.connection
   .once("open", () => console.log("Connected to MongoDB"))
   .on("error", (error) => {

@@ -5,7 +5,7 @@ FROM nginx:latest
 RUN rm -v /etc/nginx/nginx.conf
 
 # Copy your custom Nginx configuration into the container
-COPY ./nginx/nginx.conf /etc/nginx/
+COPY nginx.conf /etc/nginx/
 
 # Create a directory for SSL certificates (if needed)
 #RUN mkdir -p /etc/nginx/certs
