@@ -5,8 +5,13 @@ export default defineConfig({
   base: "/xkrajn05/",
   plugins: [vue()],
   server: {
+    host: true,
+    port: 3000,
     watch: {
       usePolling: true,
+    },
+    hmr: {
+      host: "localhost",
     },
   },
 });
