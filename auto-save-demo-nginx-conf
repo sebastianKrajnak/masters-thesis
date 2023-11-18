@@ -1,0 +1,22 @@
+server {
+	listen: 80,
+	server_name 192.168.0.199;
+
+	charset utf-8;
+	root /home/xkrajn05/masters-thesis/auto-save-demo/dist;
+	index index.html index.htm;
+	
+	location / {
+		root /home/xkrajn05/masters-thesis/auto-save-demo/dist;
+		try_files $uri $uri/ /index.html;
+	}
+
+	location /ws/ {
+		proxy_pass http://localhost:3000;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+	}
+	error_log /var/log/nginx/auto-save-demo-err.log;
+	access_log /var/log/nginx/auto-save-demo-access.log;
+}
