@@ -27,6 +27,7 @@ services:
     depends_on:
       - ws-server
       - xkrajn05
+      - xstud00
   ws-server:
     container_name: ws-server
     build:
@@ -36,6 +37,12 @@ services:
       - "3000:3000"
     depends_on:
       - mongo
+  mongo:
+    container_name: mongo-db
+    image: mongo:latest
+    restart: always
+    ports:
+      - "27017:27017"
   xkrajn05:
     container_name: xkrajn05
     build:
@@ -43,9 +50,10 @@ services:
       dockerfile: ../q-sort-app/Dockerfile
     expose:
       - "8080"
-  mongo:
-    container_name: mongo-db
-    image: mongo:latest
-    restart: always
-    ports:
-      - "27017:27017"
+  xstud00:
+    container_name: xstud00
+    build:
+      context: ../test-app
+      dockerfile: ../test-app/Dockerfile
+    expose:
+      - "8080"

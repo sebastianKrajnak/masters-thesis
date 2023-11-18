@@ -4,8 +4,10 @@ FROM nginx:latest
 # Remove the default Nginx configuration
 RUN rm -v /etc/nginx/nginx.conf
 
-# Copy your custom Nginx configuration into the container
+
+# Copy your custom Nginx configuration and landing page into the container
 COPY nginx.conf /etc/nginx/
+COPY index.html /usr/share/nginx/html
 
 # Create a directory for SSL certificates (if needed)
 #RUN mkdir -p /etc/nginx/certs
