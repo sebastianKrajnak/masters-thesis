@@ -9,24 +9,24 @@ import Ferewell from "../views/Ferewell.vue";
 
 const routes = [
   {
-    path: "/xkrajn05",
+    path: "/",
     name: "Home",
     component: Home,
   },
   {
-    path: "/xkrajn05/Sorting/:uid",
+    path: "/Sorting/:uid",
     name: "Sorting",
     component: Sorting,
   },
   {
-    path: "/xkrajn05/Final",
+    path: "/Final",
     name: "Ferewell",
     component: Ferewell,
   },
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/xkrajn05'),
   routes,
 });
 

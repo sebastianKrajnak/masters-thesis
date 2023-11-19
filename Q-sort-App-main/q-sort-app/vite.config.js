@@ -6,12 +6,15 @@ export default defineConfig({
   plugins: [vue()],
   server: {
     host: true,
-    port: 3000,
     watch: {
       usePolling: true,
     },
     hmr: {
-      host: "localhost",
+      host: "0.0.0.0",
+      port: 8080,
     },
+    proxy : {
+      '/api' : 'http://localhost:8080'
+    }
   },
 });
