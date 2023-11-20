@@ -92,6 +92,24 @@ export const useQSortStore = defineStore("q-sort", () => {
       unselect();
     }
   }
+  function loadTableQueueFromServer(tableData, queueData) {
+    if (queueData === "" && tableData === "") {
+      return;
+    } else {
+      queue.value = [];
+      var cQueue = queueData.split(",");
+      //otherwise it puts first card into queue even though it's on the table
+      queue.value = cQueue == "" ? [] : cQueue.map(Number);
+      var cTable = tableData.split(",");
+      table.value = loadTable(cTable);
+      setSelected();
+    }
+  }
+  function saveTableQueueToServer() {
+    var cTable = get2dTo1dArray(table.value);
+    var cQueue = queue.value;
+    return [cTable.join(","), cQueue.join(",")];
+  }
   /**
    * Used for loading of the sorting table saved in cookie to array
    * @param {String} is_table csv string with the sorting table where cards are represented as UIDs
@@ -544,5 +562,7 @@ export const useQSortStore = defineStore("q-sort", () => {
     init,
     getResultJSON,
     setSelectedIdx,
+    loadTableQueueFromServer,
+    saveTableQueueToServer,
   };
 });

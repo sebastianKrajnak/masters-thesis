@@ -6,7 +6,7 @@ import { v4 } from "uuid";
 const id = v4();
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: "/",

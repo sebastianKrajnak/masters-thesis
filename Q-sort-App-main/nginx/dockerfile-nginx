@@ -1,0 +1,24 @@
+# Use an official Nginx image as a base image
+FROM nginx:latest
+
+# Remove the default Nginx configuration
+RUN rm -v /etc/nginx/nginx.conf
+
+
+# Copy your custom Nginx configuration and landing page into the container
+COPY nginx.conf /etc/nginx/
+COPY index.html /usr/share/nginx/html
+
+# Create a directory for SSL certificates (if needed)
+#RUN mkdir -p /etc/nginx/certs
+
+# Copy SSL certificates into the container (if needed)
+#COPY /path/to/your/certificate.crt /etc/nginx/certs/
+#COPY /path/to/your/private.key /etc/nginx/certs/
+
+# Expose both HTTP and HTTPS ports
+EXPOSE 80
+EXPOSE 443
+
+# Start Nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]

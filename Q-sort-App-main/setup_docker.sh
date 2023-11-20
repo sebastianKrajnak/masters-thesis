@@ -1,5 +1,8 @@
 #!/bin/bash
 
 cd docker
-docker-compose build --no-cache
-docker-compose -p q-sort-app up --force-recreate -d
+echo "============== Building services... =============="
+docker compose build --no-cache
+echo "============== Starting service containers... =============="
+docker compose up
+# docker-compose -p q-sort-app up --force-recreate -d

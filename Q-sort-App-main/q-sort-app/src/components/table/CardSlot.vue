@@ -56,19 +56,22 @@ watch(
   () => {
     var cardId = qStore.getTableCardId(props.row, props.col);
     if (cardId != null) {
-      if (cVisible.value && card.value.id != cardId) { //swap cards
+      if (cVisible.value && card.value.id != cardId) {
+        //swap cards
         cVisible.value = false;
         setTimeout(() => {
           card.value.id = cardId;
           card.value.text = qStore.getCardText(cardId);
           cVisible.value = true;
         }, 175);
-      } else { //insert card
+      } else {
+        //insert card
         card.value.id = cardId;
         card.value.text = qStore.getCardText(cardId);
         cVisible.value = true;
       }
-    } else { //remove card
+    } else {
+      //remove card
       cVisible.value = false;
       card.id = null;
       card.text = "";
@@ -86,7 +89,6 @@ function onClickMove() {
   socketSendMove(qStore.selectedCardId, props.row, props.col);
   qStore.moveToSlot(props.row, props.col);
 }
-
 /**
  * Removes selected card from slot
  */
@@ -94,7 +96,6 @@ function onClickRemove() {
   socketSendRemove(qStore.selectedCardId, props.row, props.col);
   qStore.returnCardToQueue();
 }
-
 /**
  * sets class "movable" if any card is selected and slot is empty
  */
@@ -105,7 +106,6 @@ function classMovable() {
     return "";
   }
 }
-
 /**
  * Socket communication functions
  */
@@ -115,9 +115,6 @@ function socketSendMove(id, row, col) {
 
 function socketRecMove(cardData) {
   if (props.row === cardData.row && props.col === cardData.col) {
-    console.log(
-      `Received changes row: ${cardData.row} ,col: ${cardData.col} ,selected card: ${qStore.selectedCardId} ,data id: ${cardData.id}`
-    );
     qStore.setSelected(cardData.id);
     qStore.setSelectedIdx(cardData.id);
 
@@ -131,16 +128,10 @@ function socketSendRemove(id, row, col) {
 
 function socketRecRemove(cardData) {
   if (qStore.getTableCardId(cardData.row, cardData.col) === cardData.id) {
-    console.log("removing card fn called");
-    console.log(
-      `Received remove row: ${cardData.row} ,col: ${cardData.col} ,selected card: ${qStore.selectedCardId} ,data id: ${cardData.id}`
-    );
     qStore.setSelected(cardData.id, cardData.row, cardData.col);
     qStore.returnCardToQueue();
   }
 }
-
-
 
 onMounted(() => {
   var cardId = qStore.getTableCardId(props.row, props.col);

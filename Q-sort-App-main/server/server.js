@@ -1,12 +1,12 @@
-/* const mongoose = require("mongoose");
-const Document = require("./Document");
+const mongoose = require("mongoose");
+const TableQueue = require("./TableQueue");
 
-mongoose.connect("mongodb://localhost:27017/test-db");
+mongoose.connect("mongodb://mongo-db:27017/test-db");
 mongoose.connection
   .once("open", () => console.log("Connected to MongoDB"))
   .on("error", (error) => {
     console.warn("Warning: error connecting to MongoDB:", error);
-  }); */
+  });
 
 const httpServer = require("http").createServer();
 const io = require("socket.io")(httpServer, {
@@ -15,50 +15,49 @@ const io = require("socket.io")(httpServer, {
     methods: ["GET", "POST"],
   },
 });
-/* const defaultData = "";
 
-async function findOrCreate(documentId) {
-  if (documentId == null) return;
+async function findOrCreateEntry(tableQueueId) {
+  if (tableQueueId == null) return;
 
-  const doc = await Document.findById(documentId);
-  if (doc) return doc;
+  const tqData = await TableQueue.findById(tableQueueId);
+  if (tqData) return tqData;
 
-  return await Document.create({ _id: documentId, data: defaultData });
-} */
+  return await TableQueue.create({ _id: tableQueueId, table: "", queue: "" });
+}
 
 io.on("connection", (socket) => {
   console.log("User connected");
 
-  /* socket.on("get-document", async (id) => {
-    console.log("ID: ", id);
+  socket.on("get-card-data", async (roomId) => {
+    console.log("ID: ", roomId);
 
-    const document = await findOrCreate(id);
+    const tqData = await findOrCreateEntry(roomId);
 
-    socket.join(id);
-    socket.emit("load-document", document.data);
+    socket.join(roomId);
+    socket.emit("load-card-data", tqData);
 
     socket.on("send-changes", (text) => {
       // Broadcast the updated text to all clients with the same id
-      socket.broadcast.to(id).emit("receive-changes", text);
+      socket.broadcast.to(roomId).emit("receive-changes", text);
     });
 
-    socket.on("save-document", async (data) => {
-      await Document.findByIdAndUpdate(id, { data });
+    socket.on("move-card", ({ id, row, col }) => {
+      socket.broadcast.to(roomId).emit("card-moved", { id, row, col });
     });
-  }); */
 
-  socket.on("move-card", ({ id, row, col }) => {
-    socket.broadcast.emit("card-moved", { id, row, col });
-  });
+    socket.on("remove-card", ({ id, row, col }) => {
+      socket.broadcast.to(roomId).emit("card-removed", { id, row, col });
+    });
 
-  socket.on("remove-card", ({ id, row, col }) => {
-    console.log("card removed");
-    socket.broadcast.emit("card-removed", { id, row, col });
-  });
+    socket.on("swap-card", ({ destID, sourceID, sourceRow, sourceCol }) => {
+      socket.broadcast
+        .to(roomId)
+        .emit("card-swapped", { destID, sourceID, sourceRow, sourceCol });
+    });
 
-  socket.on("swap-card", ({destID, sourceID, sourceRow, sourceCol}) => {
-    console.log("card swapped");
-    socket.broadcast.emit("card-swapped", {destID, sourceID, sourceRow, sourceCol});
+    socket.on("save-card-data", async ({ table, queue }) => {
+      await TableQueue.findByIdAndUpdate(roomId, { table, queue });
+    });
   });
 
   socket.on("disconnect", () => {
