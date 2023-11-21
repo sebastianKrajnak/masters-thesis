@@ -1,6 +1,6 @@
 {
     "name": "Food preferences",
-    "uid": "0",
+    "datasetId": "0",
     "question": "What type of food do you like and what you don't like?",
     "delimiters": [
         "I Like",

@@ -11,7 +11,7 @@ export const useQSortStore = defineStore("q-sort", () => {
 
   const defaultColors = ref(["#8CB37F", "#ECEBE5", "#F79696"]);
   const name = ref(null);
-  const uid = ref(null);
+  const datasetId = ref(null);
   const question = ref("");
   const delimiters = ref([]);
   const colors = ref([]);
@@ -31,7 +31,7 @@ export const useQSortStore = defineStore("q-sort", () => {
    */
   function init() {
     name.value = null;
-    uid.value = null;
+    datasetId.value = null;
     question.value = "";
     delimiters.value = [];
     colors.value = [];
@@ -50,7 +50,7 @@ export const useQSortStore = defineStore("q-sort", () => {
    */
   function loadDataset(json) {
     //General Q-sort info
-    uid.value = json.uid;
+    datasetId.value = json.datasetId;
     name.value = json.name;
     question.value = json.question;
     delimiters.value = json.delimiters;
@@ -58,8 +58,8 @@ export const useQSortStore = defineStore("q-sort", () => {
     colors.value = getAllRowColors(json.colors);
     cardList.value = loadCards(json.cards);
 
-    cookieTable.value = "Q-sortApp-" + uid.value + "-table";
-    cookieQueue.value = "Q-sortApp-" + uid.value + "-queue";
+    cookieTable.value = "Q-sortApp-" + datasetId.value + "-table";
+    cookieQueue.value = "Q-sortApp-" + datasetId.value + "-queue";
 
     sStore.loadSettings();
 
@@ -522,7 +522,7 @@ export const useQSortStore = defineStore("q-sort", () => {
       return JSON.stringify(
         {
           name: name.value,
-          uid: uid.value,
+          datasetId: datasetId.value,
           sort: sort,
         },
         null,

@@ -4,7 +4,7 @@
  -->
 <template>
     <div>
-        <div class="wrapper" @click="goToRoute('Sorting', {uid: uid})">
+        <div class="wrapper" @click="goToRoute('Sorting', {datasetId: datasetId, uid: v4()})">
             <div class="details">
                 <div class="qn-wrapper">
                     <div class="name">
@@ -29,19 +29,20 @@
 </template>
 <script setup>
     import { useRouter } from 'vue-router';
+    import { v4 } from "uuid";
     const props = defineProps({
         name: String,
         size: String,
         statementCount: Number,
         question: String,
-        uid: String
+        datasetId: String
     })
     const router = useRouter()
 
     /**
      * Goes to the Sorting page and loads the selected dataset
      * @param {String} routeName What route to use
-     * @param {Object} params the UID of the dataset that was chosen
+     * @param {Object} params the datasetId of the dataset that was chosen
      */
     function goToRoute(routeName, params=null ){
         router.push({name: routeName, params: params==null? {} : params})

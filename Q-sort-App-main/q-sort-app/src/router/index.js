@@ -14,7 +14,7 @@ const routes = [
     component: Home,
   },
   {
-    path: "/Sorting/:uid",
+    path: "/Sorting/:datasetId/:uid",
     name: "Sorting",
     component: Sorting,
   },

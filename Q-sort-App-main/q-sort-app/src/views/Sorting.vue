@@ -120,10 +120,10 @@ const minimap = ref(null);
 /**
  * Load dataset by the ID from the general store
  * NOTE: This function could fetch the dataset from server
- * @param {Number} uid
+ * @param {Number} datasetId
  */
-function getDataset(uid) {
-  return gStore.datasets.find((element) => element.uid == uid);
+function getDataset(datasetId) {
+  return gStore.datasets.find((element) => element.datasetId == datasetId);
 }
 
 /**
@@ -159,7 +159,7 @@ onBeforeMount(() => {
   qStore.init();
   gStore.init();
   //Load dataset
-  qStore.loadDataset(getDataset(route.params.uid));
+  qStore.loadDataset(getDataset(route.params.datasetId));
   socket.emit("get-card-data", route.params.uid);
   socket.once("load-card-data", (data) => {
     console.log("Loading data from server...");

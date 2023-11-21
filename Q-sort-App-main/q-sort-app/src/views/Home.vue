@@ -16,7 +16,7 @@
                     :statementCount="dataset.cards.length"
                     :size="getDatasetSize(dataset.cards.length)"
                     :question="dataset.question"
-                    :uid="dataset.uid"/>
+                    :datasetId="dataset.datasetId"/>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 {
     "name": "Big Five Inventory 2",
-    "uid": "2",
+    "datasetId": "2",
     "question": "Here are a number of characteristics that may or may not apply to you. Please indicate the extent to which you agree or disagree with each statement.",
     "delimiters": [
         "Agree strongly",

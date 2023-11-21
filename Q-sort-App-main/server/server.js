@@ -29,7 +29,7 @@ io.on("connection", (socket) => {
   console.log("User connected");
 
   socket.on("get-card-data", async (roomId) => {
-    console.log("ID: ", roomId);
+    console.log("Room ID: ", roomId);
 
     const tqData = await findOrCreateEntry(roomId);
 

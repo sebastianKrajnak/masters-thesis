@@ -1,6 +1,6 @@
 {
     "name": "Affect adjectives scale",
-    "uid": "1",
+    "datasetId": "1",
     "question": "Describe your emotional experience in the past week, think of how you felt throughout the week in general.",
     "delimiters": [
         "Extremely",
