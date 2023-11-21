@@ -7,7 +7,7 @@ import { defineStore } from "pinia"
 import { ref } from "vue"
 
 export const useSettingsStore = defineStore("settings", () => {
-    const savingEnabled = ref(true)
+    const savingEnabled = ref(false)
     const queueVisible = ref(true)
     const minimapEnabled = ref(true)
     const questionOpened = ref(true)
